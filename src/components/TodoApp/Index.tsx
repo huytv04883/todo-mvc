@@ -7,13 +7,21 @@ import TodoMain from "../TodoMain/Index";
 import "./index.css";
 
 const TodoApp: React.FC = () => {
+
   const [tasks, setTasks] = useState<TaskItem[]>(() => {
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '') || [{
-      id: "",
-      title: "",
-      description: "",
-      completed: false,
-    }]
+    try {
+      const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (data) {
+        const parsedData = JSON.parse(data);
+        if (Array.isArray(parsedData) && parsedData.length > 0) {
+          return parsedData;
+        }
+      }
+    } catch (error) {
+      console.error('Error parsing or retrieving data from localStorage:', error);
+    }
+
+    return [];
     // Init tasks: If exists data local storage => set data || []
   });
 
