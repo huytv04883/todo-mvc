@@ -13,7 +13,7 @@ const TodoApp: React.FC = () => {
   });
 
   const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
-
+  
   const filteredTasks = tasks?.filter((task) => {
     if (filter === "completed") {
       return task.completed;

@@ -29,7 +29,7 @@ const TodoMain: React.FC<ITodoItemProps> = ({ data, tasks, setTasks }) => {
     };
 
     const handleDeleteTask = (taskId: string) => {
-        const updatedTasks = tasks.filter((task) => task.id !== taskId);
+        const updatedTasks = tasks?.filter((task) => task.id !== taskId);
         setTasks(updatedTasks);
     };
 
