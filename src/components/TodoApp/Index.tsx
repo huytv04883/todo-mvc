@@ -8,12 +8,17 @@ import "./index.css";
 
 const TodoApp: React.FC = () => {
   const [tasks, setTasks] = useState<TaskItem[]>(() => {
-    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '') || []
+    return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '') || [{
+      id: "",
+      title: "",
+      description: "",
+      completed: false,
+    }]
     // Init tasks: If exists data local storage => set data || []
   });
 
   const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
-  
+
   const filteredTasks = tasks?.filter((task) => {
     if (filter === "completed") {
       return task.completed;
